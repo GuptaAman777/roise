@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Roise!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            height: 100vh;
+            overflow-x: hidden;
+            color: white;
+        }
+        
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem;
+            min-height: 300vh;
+        }
+        
+        .header {
+            text-align: center;
+            margin-top: 2rem;
+            margin-bottom: 4rem;
+        }
+        
+        .title {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+            }
+            to {
+                text-shadow: 0 0 20px rgba(255, 255, 255, 0.9), 
+                            0 0 30px rgba(255, 192, 203, 0.9), 
+                            0 0 40px rgba(255, 105, 180, 0.9);
+            }
+        }
+        
+        .subtitle {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 2rem;
+        }
+        
+        .profile-container {
+            position: relative;
+            width: 250px;
+            height: 250px;
+            margin-bottom: 3rem;
+        }
+        
+        .profile {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.6);
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+                box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.6);
+            }
+            50% {
+                transform: translateY(-10px);
+                box-shadow: 0 25px 15px 0px rgba(0, 0, 0, 0.2);
+            }
+            100% {
+                transform: translateY(0);
+                box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.6);
+            }
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            width: 80%;
+            max-width: 800px;
+            margin: 2rem 0;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            text-align: center;
+        }
+        
+        .message {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+        
+        .cake-container {
+            position: relative;
+            height: 200px;
+            margin: 4rem 0;
+        }
+        
+        .cake {
+            position: relative;
+            width: 250px;
+            height: 200px;
+            margin: 0 auto;
+        }
+        
+        .cake-base {
+            position: absolute;
+            width: 250px;
+            height: 100px;
+            bottom: 0;
+            background: #f6a6c1;
+            border-radius: 10px 10px 5px 5px;
+        }
+        
+        .cake-middle {
+            position: absolute;
+            width: 200px;
+            height: 80px;
+            bottom: 100px;
+            left: 25px;
+            background: #ffc3dd;
+            border-radius: 10px 10px 5px 5px;
+        }
+        
+        .cake-top {
+            position: absolute;
+            width: 150px;
+            height: 60px;
+            bottom: 180px;
+            left: 50px;
+            background: #ffdeee;
+            border-radius: 10px 10px 5px 5px;
+        }
+        
+        .candle {
+            position: absolute;
+            width: 10px;
+            height: 30px;
+            bottom: 240px;
+            left: 120px;
+            background: #fdfd96;
+            border-radius: 5px 5px 0 0;
+        }
+        
+        .flame {
+            position: absolute;
+            width: 15px;
+            height: 30px;
+            bottom: 270px;
+            left: 117.5px;
+            background: #ffac33;
+            border-radius: 50% 50% 20% 20%;
+            box-shadow: 0 0 10px #ffac33, 0 0 20px #ffac33, 0 0 30px #ffac33;
+            animation: flicker 1s ease-in-out infinite alternate;
+        }
+        
+        @keyframes flicker {
+            0% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+            100% {
+                transform: scale(1.1);
+                opacity: 1;
+            }
+        }
+        
+        .balloons-container {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .balloon {
+            position: absolute;
+            width: 40px;
+            height: 50px;
+            border-radius: 50%;
+            bottom: -100px;
+            animation: float-up 15s linear infinite;
+        }
+        
+        @keyframes float-up {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+                bottom: -100px;
+            }
+            50% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+                bottom: 100vh;
+            }
+        }
+
+        .confetti-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            top: -10px;
+            animation: confetti-fall 5s linear infinite;
+        }
+
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .memory-box {
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            font-size: 1.2rem;
+            padding: 1rem;
+        }
+        
+        .memory-box:hover {
+            transform: scale(1.05);
+        }
+        
+        .footer {
+            margin-top: 4rem;
+            padding: 2rem;
+            text-align: center;
+            width: 100%;
+        }
+        
+        .music-control {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            z-index: 100;
+        }
+        
+        .music-control:hover {
+            transform: scale(1.1);
+        }
+        
+        .music-icon {
+            width: 30px;
+            height: 30px;
+            fill: white;
+        }
+
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .glass-card {
+                width: 95%;
+                padding: 1.5rem;
+            }
+            
+            .profile-container {
+                width: 200px;
+                height: 200px;
+            }
+            
+            .cake {
+                transform: scale(0.8);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="balloons-container" id="balloons-container"></div>
+    <div class="confetti-container" id="confetti-container"></div>
+    
+    <div class="container">
+        <div class="header">
+            <h1 class="title">Happy Birthday Roise!</h1>
+            <p class="subtitle">Jyoti Sarkar's Special Day</p>
+        </div>
+        
+        <div class="profile-container">
+            <img src="/api/placeholder/400/400" alt="Roise" class="profile">
+        </div>
+        
+        <div class="glass-card">
+            <p class="message">
+                Dear Roise,<br><br>
+                On your special day, we celebrate the amazing person you are. Your kindness, 
+                your smile, and your friendship have touched so many lives. May this new year 
+                of life bring you all the joy, success, and happiness you deserve!<br><br>
+                Wishing you the happiest of birthdays!
+            </p>
+        </div>
+        
+        <div class="cake-container">
+            <div class="cake">
+                <div class="cake-base"></div>
+                <div class="cake-middle"></div>
+                <div class="cake-top"></div>
+                <div class="candle"></div>
+                <div class="flame"></div>
+            </div>
+        </div>
+        
+        <div class="glass-card">
+            <h2>Memories & Wishes</h2>
+            <div class="gallery">
+                <div class="memory-box">
+                    "To more adventures and laughter!"
+                </div>
+                <div class="memory-box">
+                    "You make the world brighter just by being you."
+                </div>
+                <div class="memory-box">
+                    "Here's to another year of memories together!"
+                </div>
+                <div class="memory-box">
+                    "Your friendship means the world to me."
+                </div>
+            </div>
+        </div>
+        
+        <div class="glass-card">
+            <h2>A Special Message</h2>
+            <p class="message">
+                Roise, your energy lights up every room you enter. Your determination inspires 
+                everyone around you. Your compassion makes this world a better place. On your 
+                birthday, we celebrate all that you are and all that you're yet to become.<br><br>
+                May this year be filled with moments that take your breath away, people who 
+                cherish you, and dreams that come true!
+            </p>
+        </div>
+        
+        <div class="footer">
+            <p>Made with ❤️ for Roise</p>
+            <p>©2025 - Happy Birthday!</p>
+        </div>
+    </div>
+    
+    <div class="music-control" id="music-toggle">
+        <svg class="music-icon" viewBox="0 0 24 24">
+            <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+        </svg>
+    </div>
+
+    <audio id="bgMusic" loop>
+        <source src="https://cdnjs.cloudflare.com/ajax/libs/musickit/1.1.0/Happy-Birthday-Piano.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    
+    <script>
+        // Background music control
+        const musicToggle = document.getElementById('music-toggle');
+        const bgMusic = document.getElementById('bgMusic');
+        let musicPlaying = false;
+
+        musicToggle.addEventListener('click', () => {
+            if (musicPlaying) {
+                bgMusic.pause();
+                musicToggle.style.backgroundColor = 'rgba(255, 255, 255, 0.2)';
+            } else {
+                bgMusic.play();
+                musicToggle.style.backgroundColor = 'rgba(255, 105, 180, 0.4)';
+            }
+            musicPlaying = !musicPlaying;
+        });
+
+        // Create floating balloons
+        const balloonsContainer = document.getElementById('balloons-container');
+        const balloonColors = ['#FF9AA2', '#FFB7B2', '#FFDAC1', '#E2F0CB', '#B5EAD7', '#C7CEEA'];
+
+        function createBalloons(count) {
+            for (let i = 0; i < count; i++) {
+                const balloon = document.createElement('div');
+                balloon.classList.add('balloon');
+                
+                // Random properties
+                const size = Math.random() * 30 + 40;
+                const left = Math.random() * 100;
+                const delay = Math.random() * 10;
+                const duration = Math.random() * 10 + 10;
+                const colorIndex = Math.floor(Math.random() * balloonColors.length);
+                
+                balloon.style.width = `${size}px`;
+                balloon.style.height = `${size * 1.2}px`;
+                balloon.style.left = `${left}%`;
+                balloon.style.backgroundColor = balloonColors[colorIndex];
+                balloon.style.animationDelay = `${delay}s`;
+                balloon.style.animationDuration = `${duration}s`;
+                
+                balloonsContainer.appendChild(balloon);
+            }
+        }
+
+        // Create confetti
+        const confettiContainer = document.getElementById('confetti-container');
+        const confettiColors = ['#FF9AA2', '#FFB7B2', '#FFDAC1', '#E2F0CB', '#B5EAD7', '#C7CEEA', '#fdfd96', '#ffac33'];
+
+        function createConfetti(count) {
+            for (let i = 0; i < count; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                
+                // Random properties
+                const size = Math.random() * 8 + 5;
+                const left = Math.random() * 100;
+                const delay = Math.random() * 5;
+                const duration = Math.random() * 3 + 3;
+                const colorIndex = Math.floor(Math.random() * confettiColors.length);
+                
+                confetti.style.width = `${size}px`;
+                confetti.style.height = `${size}px`;
+                confetti.style.left = `${left}%`;
+                confetti.style.backgroundColor = confettiColors[colorIndex];
+                confetti.style.animationDelay = `${delay}s`;
+                confetti.style.animationDuration = `${duration}s`;
+                
+                confettiContainer.appendChild(confetti);
+            }
+        }
+
+        // Initialize animations
+        document.addEventListener('DOMContentLoaded', () => {
+            createBalloons(15);
+            createConfetti(100);
+            
+            // Auto-trigger music on page interaction
+            document.body.addEventListener('click', () => {
+                if (!musicPlaying) {
+                    bgMusic.play().catch(e => console.log('Auto-play prevented by browser'));
+                    musicPlaying = true;
+                    musicToggle.style.backgroundColor = 'rgba(255, 105, 180, 0.4)';
+                }
+            }, { once: true });
+        });
+    </script>
+</body>
+</html>
